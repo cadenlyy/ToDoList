@@ -203,15 +203,21 @@ void MainFrame::ShowTime()
 std::pair<int, int> MainFrame::find_time(std::string s)
 {
 	std::string hour = "", min = "";
+	bool mc = true, hc = true;
 	for (int i = s.size(); i > 0; i--) {
-		if ((s[i] == 'm' or s[i] == 'M') and i != 0) {
-			if (isdigit(s[i - 2])) min.push_back(s[i-2]);
+		if ((s[i] == 'm' or s[i] == 'M') and i != 0 and mc and isdigit(s[i - 1])) {
+			if (i >= 2) {
+				if (isdigit(s[i - 2])) min.push_back(s[i - 2]);
+			}
 			min.push_back(s[i-1]);
+			mc = false;
 		}
-		else if ((s[i] == 'h' or s[i] == 'H') and i != 0) {
-			if (isdigit(s[i - 1])) hour.push_back(s[i - 2]);
+		else if ((s[i] == 'h' or s[i] == 'H') and i != 0 and hc and isdigit(s[i - 1])) {
+			if (i >= 2) {
+				if (isdigit(s[i - 2])) hour.push_back(s[i - 2]);
+			}
 			hour.push_back(s[i-1]);
-			break;
+			hc = false;
 		}
 	}
 	if (hour.size() == 0) hour.push_back('0');
