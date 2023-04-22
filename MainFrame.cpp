@@ -205,12 +205,16 @@ std::pair<int, int> MainFrame::find_time(std::string s)
 	std::string hour = "", min = "";
 	bool mc = true, hc = true;
 	for (int i = s.size(); i > 0; i--) {
-		if ((s[i] == 'm' or s[i] == 'M') and i != 0 and mc and isdigit(s[i - 1])) {
-			if (i >= 2) {
-				if (isdigit(s[i - 2])) min.push_back(s[i - 2]);
+		if ((s[i] == 'm' or s[i] == 'M') and mc) {
+			for (int j = i-1; j > -1; j--) {
+				if (isdigit(s[j])) {
+					min.push_back(s[j]);
+				}
+				else {
+					mc = false;
+					break;
+				}
 			}
-			min.push_back(s[i-1]);
-			mc = false;
 		}
 		else if ((s[i] == 'h' or s[i] == 'H') and i != 0 and hc and isdigit(s[i - 1])) {
 			if (i >= 2) {
@@ -222,6 +226,7 @@ std::pair<int, int> MainFrame::find_time(std::string s)
 	}
 	if (hour.size() == 0) hour.push_back('0');
 	if (min.size() == 0) min.push_back('0');
+	std::reverse(min.begin(), min.end());
 	std::pair<int, int> p = { stoi(hour),stoi(min) };
 	return p;
 }
