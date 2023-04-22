@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "Task.h"
+#include <wx/sizer.h>
 
 int hour = 0, min = 0;
 
@@ -30,6 +31,22 @@ void MainFrame::CreateControls()
 	checkListBox = new wxCheckListBox(panel, wxID_ANY, wxPoint(100, 120), wxSize(600, 400));
 	clearButton = new wxButton(panel, wxID_ANY, "Clear", wxPoint(100, 525), wxSize(100, 35));
 	totalTime = new wxStaticText(panel, wxID_ANY, wxString(""), wxPoint(200, 525), wxSize(100, 35));
+
+	boxSizer = new wxBoxSizer(wxVERTICAL);
+	boxSizerh = new wxBoxSizer(wxHORIZONTAL);
+	boxSizerf = new wxBoxSizer(wxHORIZONTAL);
+
+	boxSizerh->Add(inputField, 10);
+	boxSizerh->Add(addButton, 1);
+
+	boxSizerf->Add(clearButton, 0);
+	boxSizerf->Add(totalTime, 0);
+
+	boxSizer->Add(headLineText, 0, wxEXPAND);
+	boxSizer->Add(boxSizerh, 0, wxEXPAND);
+	boxSizer->Add(checkListBox, 0, wxEXPAND);
+	boxSizer->Add(boxSizerf, 0);
+	panel->SetSizerAndFit(boxSizer);
 }
 
 void MainFrame::BindEventHandlers()
@@ -187,11 +204,11 @@ std::pair<int, int> MainFrame::find_time(std::string s)
 {
 	std::string hour = "", min = "";
 	for (int i = s.size(); i > 0; i--) {
-		if (s[i] == 'm' or s[i] == 'M') {
+		if ((s[i] == 'm' or s[i] == 'M') and i != 0) {
 			if (isdigit(s[i - 2])) min.push_back(s[i-2]);
 			min.push_back(s[i-1]);
 		}
-		else if (s[i] == 'h' or s[i] == 'H') {
+		else if ((s[i] == 'h' or s[i] == 'H') and i != 0) {
 			if (isdigit(s[i - 1])) hour.push_back(s[i - 2]);
 			hour.push_back(s[i-1]);
 			break;

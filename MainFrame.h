@@ -34,5 +34,9 @@ private:
 	wxCheckListBox* checkListBox;
 	wxButton* clearButton;
 	wxStaticText* totalTime;
+	wxBoxSizer* boxSizer;
+	wxBoxSizer* boxSizerh;
+	wxBoxSizer* boxSizerp;
+	wxBoxSizer* boxSizerf;
 };
 
