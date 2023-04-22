@@ -216,12 +216,16 @@ std::pair<int, int> MainFrame::find_time(std::string s)
 				}
 			}
 		}
-		else if ((s[i] == 'h' or s[i] == 'H') and i != 0 and hc and isdigit(s[i - 1])) {
-			if (i >= 2) {
-				if (isdigit(s[i - 2])) hour.push_back(s[i - 2]);
+		else if ((s[i] == 'h' or s[i] == 'H') and hc) {
+			for (int j = i - 1; j > -1; j--) {
+				if (isdigit(s[j])) {
+					hour.push_back(s[j]);
+				}
+				else {
+					hc = false;
+					break;
+				}
 			}
-			hour.push_back(s[i-1]);
-			hc = false;
 		}
 	}
 	if (hour.size() == 0) hour.push_back('0');
