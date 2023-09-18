@@ -235,3 +235,9 @@ std::pair<int, int> MainFrame::find_time(std::string s)
 	return p;
 }
 
+std::pair<int, int> MainFrame::find_date(std::string s)
+{
+	
+	return std::pair<int, int>();
+}
+

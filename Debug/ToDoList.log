@@ -1,4 +1,6 @@
-﻿  MainFrame.cpp
+﻿  App.cpp
+  MainFrame.cpp
 C:\Users\caden\OneDrive\Desktop\code\Script\C++\GUI\ToDoList\MainFrame.cpp(118,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\caden\OneDrive\Desktop\code\Script\C++\GUI\ToDoList\MainFrame.cpp(175,32): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   ToDoList.vcxproj -> C:\Users\caden\OneDrive\Desktop\code\Script\C++\GUI\ToDoList\Debug\ToDoList.exe

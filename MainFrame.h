@@ -23,8 +23,8 @@ private:
 	void MoveSelectedTask(int offset);
 	void SwapTask(int i, int j);
 	void ShowTime();
-
 	std::pair<int, int> find_time(std::string s);
+	std::pair<int, int> find_date(std::string s);
 
 
 	wxPanel* panel;
